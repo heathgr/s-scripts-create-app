@@ -19,8 +19,6 @@ jobs:
       run: npm install
     - name: Build Package
       run: npm run-script build
-    - name: Test
-      run: npm test
     - name: GetPublishedVersion
       id: publishedversion
       run: echo "::set-output name=version::$(npm view @s-is-for-store/create-app version)"
