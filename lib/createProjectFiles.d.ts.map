@@ -1,1 +1,1 @@
-{"version":3,"file":"createProjectFiles.d.ts","sourceRoot":"","sources":["../src/createProjectFiles.ts"],"names":[],"mappings":"AAwCA,QAAA,MAAM,kBAAkB,kBAAyB,MAAM,eAAe,MAAM,kBAY3E,CAAA;AAED,eAAe,kBAAkB,CAAA"}
+{"version":3,"file":"createProjectFiles.d.ts","sourceRoot":"","sources":["../src/createProjectFiles.ts"],"names":[],"mappings":"AAKA,OAAO,EAAE,IAAI,EAAE,MAAM,WAAW,CAAA;AA2ChC,QAAA,MAAM,kBAAkB,kBAAyB,MAAM,eAAe,IAAI,KAAG,OAAO,CAAC,IAAI,CASxF,CAAA;AAED,eAAe,kBAAkB,CAAA"}

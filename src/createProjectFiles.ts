@@ -1,6 +1,9 @@
-import { ensureFile, readFile, readdir, lstat, writeFile } from 'fs-extra'
+import {
+  ensureFile, readFile, readdir, lstat, writeFile,
+} from 'fs-extra'
 import { join } from 'path'
 import Handlebars from 'handlebars'
+import { Args } from './getArgs'
 
 const getTemplateFilePaths = async (path: string) => {
   const itemsInPath = await (readdir(path))
@@ -22,29 +25,34 @@ const getTemplateFilePaths = async (path: string) => {
   return templateFiles
 }
 
-const getTemplateSources = async (filePaths: string[]) => await Promise.all(filePaths.map(file => readFile(file, 'utf8')))
+const getTemplateSources = async (filePaths: string[]) => Promise.all(filePaths.map((file) => readFile(file, 'utf8')))
 
-const getRenderedTemplates = (templateSource: string[], templateData: any) => templateSource.map((source) => {
+const getRenderedTemplates = (
+  templateSource: string[],
+  templateData: Args,
+) => templateSource.map((source) => {
   const template = Handlebars.compile(source)
 
   return template(templateData)
 })
 
-const createProjectDirectories = async (targetFilePaths: string[]) => await Promise.all(
-  targetFilePaths.map(file => ensureFile(file))
+const createProjectDirectories = async (targetFilePaths: string[]) => Promise.all(
+  targetFilePaths.map((file) => ensureFile(file)),
 )
 
-const writeProjectFiles = async (targetContents: string[], targetFilePaths: string[]) => await Promise.all(
-  targetContents.map((contents, i) => writeFile(targetFilePaths[i], contents, 'utf8'))
+const writeProjectFiles = async (
+  targetContents: string[],
+  targetFilePaths: string[]) => Promise.all(
+  targetContents.map((contents, i) => writeFile(targetFilePaths[i], contents, 'utf8')),
 )
 
-const createProjectFiles = async (projectFolder: string, projectName: string) => {
+const createProjectFiles = async (projectFolder: string, projectArgs: Args): Promise<void> => {
   const templatePath = join(__dirname, '../template_files/')
   const templateFilePaths = await getTemplateFilePaths(templatePath)
   const templateSources = await getTemplateSources(templateFilePaths)
-  const renderedTemplates = getRenderedTemplates(templateSources, { projectName })
+  const renderedTemplates = getRenderedTemplates(templateSources, projectArgs)
   const targetFilePaths = templateFilePaths.map((path) => join(projectFolder, path.replace(templatePath, '')))
-  
+
   await createProjectDirectories(targetFilePaths)
   await writeProjectFiles(renderedTemplates, targetFilePaths)
 }
