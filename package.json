@@ -33,6 +33,7 @@
   },
   "dependencies": {
     "-": "0.0.1",
+    "figlet": "^1.4.0",
     "fs-extra": "^9.0.1",
     "handlebars": "^4.7.6",
     "ora": "^4.0.4",

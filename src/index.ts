@@ -1,31 +1,19 @@
 #!/usr/bin/env node
-/* eslint-disable @typescript-eslint/no-explicit-any */
 
-import ora from 'ora'
+import { join } from 'path'
 
 import configuration from './getConfiguration'
 import createProjectFiles from './createProjectFiles'
-
-type Step<T> = (...args: any[]) => Promise<T>
-
-const runStep = async <T>(description: string, step: Step<T>, ...args: any[]) => {
-  const spinner = ora(description)
-
-  spinner.start()
-  try {
-    await step(...args)
-    spinner.succeed()
-  } catch (e) {
-    spinner.fail()
-    throw e
-  }
-}
+import runStep from './helpers/runStep'
+import exec from './helpers/exec'
 
 const run = async (): Promise<void> => {
-  await runStep('Create Project Files', createProjectFiles, configuration)
-  // TODO install project dependencies
-  // TODO run test suite
-  // TODO initialize git
+  const projectFolder = join(process.cwd(), configuration.folder)
+
+  await runStep('Creating Project Files', createProjectFiles, projectFolder, configuration)
+  await runStep('Installing Dependencies', async () => exec(`( cd ${projectFolder}; npm install)`))
+  await runStep('Validating Project', async () => exec(`( cd ${projectFolder}; npm test)`))
+  await runStep('Initializing Git', async () => exec(`( cd ${projectFolder}; git init)`))
 }
 
 run()

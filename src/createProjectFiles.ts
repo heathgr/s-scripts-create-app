@@ -51,9 +51,9 @@ const writeProjectFiles = async (
 )
 
 const createProjectFiles = async (
+  projectFolder: string,
   configuration: Configuration,
 ): Promise<void> => {
-  const projectFolder = join(process.cwd(), configuration.folder)
   const templatePath = join(__dirname, '../template_files/')
   const templateFilePaths = await getTemplateFilePaths(templatePath)
   const templateSources = await getTemplateSources(templateFilePaths)
