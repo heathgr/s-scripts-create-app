@@ -47,9 +47,6 @@ const createProjectFiles = async (projectFolder: string, projectName: string) =>
   
   await createProjectDirectories(targetFilePaths)
   await writeProjectFiles(renderedTemplates, targetFilePaths)
-
-  console.log('target files: ', targetFilePaths)
-  console.log('templates: ', renderedTemplates)
 }
 
 export default createProjectFiles
