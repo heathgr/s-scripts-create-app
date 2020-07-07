@@ -1,18 +1,31 @@
 #!/usr/bin/env node
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { join } from 'path'
+import ora from 'ora'
 
-import args from './getArgs'
+import configuration from './getConfiguration'
 import createProjectFiles from './createProjectFiles'
 
-// TODO better overall error handeling especially when write files and creating directories
-const run = async (): Promise<void> => {
-  const projectFolder = join(process.cwd(), args.projectFolder)
+type Step<T> = (...args: any[]) => Promise<T>
 
-  await createProjectFiles(projectFolder, args)
+const runStep = async <T>(description: string, step: Step<T>, ...args: any[]) => {
+  const spinner = ora(description)
+
+  spinner.start()
+  try {
+    await step(...args)
+    spinner.succeed()
+  } catch (e) {
+    spinner.fail()
+    throw e
+  }
+}
+
+const run = async (): Promise<void> => {
+  await runStep('Create Project Files', createProjectFiles, configuration)
   // TODO install project dependencies
   // TODO run test suite
-  // TODO start dev server
+  // TODO initialize git
 }
 
 run()

@@ -1,1 +1,1 @@
-This will be the readme for {{projectName}}.
+This will be the readme for {{name}}.

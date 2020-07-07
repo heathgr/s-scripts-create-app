@@ -1,7 +1,7 @@
 {
-  "name": "{{projectName}}",
+  "name": "{{name}}",
   "version": "0.0.0",
-  "description": "{{projectDescription}}",
+  "description": "{{description}}",
   "main": "src/index.ts",
   "scripts": {
     "test": "jest",

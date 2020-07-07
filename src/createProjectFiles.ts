@@ -1,9 +1,13 @@
 import {
-  ensureFile, readFile, readdir, lstat, writeFile,
+  ensureFile,
+  readFile,
+  readdir,
+  lstat,
+  writeFile,
 } from 'fs-extra'
 import { join } from 'path'
 import Handlebars from 'handlebars'
-import { Args } from './getArgs'
+import { Configuration } from './getConfiguration'
 
 const getTemplateFilePaths = async (path: string) => {
   const itemsInPath = await (readdir(path))
@@ -29,7 +33,7 @@ const getTemplateSources = async (filePaths: string[]) => Promise.all(filePaths.
 
 const getRenderedTemplates = (
   templateSource: string[],
-  templateData: Args,
+  templateData: Configuration,
 ) => templateSource.map((source) => {
   const template = Handlebars.compile(source)
 
@@ -46,11 +50,14 @@ const writeProjectFiles = async (
   targetContents.map((contents, i) => writeFile(targetFilePaths[i], contents, 'utf8')),
 )
 
-const createProjectFiles = async (projectFolder: string, projectArgs: Args): Promise<void> => {
+const createProjectFiles = async (
+  configuration: Configuration,
+): Promise<void> => {
+  const projectFolder = join(process.cwd(), configuration.folder)
   const templatePath = join(__dirname, '../template_files/')
   const templateFilePaths = await getTemplateFilePaths(templatePath)
   const templateSources = await getTemplateSources(templateFilePaths)
-  const renderedTemplates = getRenderedTemplates(templateSources, projectArgs)
+  const renderedTemplates = getRenderedTemplates(templateSources, configuration)
   const targetFilePaths = templateFilePaths.map((path) => join(projectFolder, path.replace(templatePath, '')))
 
   await createProjectDirectories(targetFilePaths)
