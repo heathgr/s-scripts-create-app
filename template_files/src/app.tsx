@@ -3,6 +3,6 @@ import { render } from 'react-dom'
 
 import Root from './components/Root'
 
-const appContainer = document.getElementById('app');
+const appContainer = document.getElementById('app')
 
 render(<Root />, appContainer)

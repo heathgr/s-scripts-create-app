@@ -11,9 +11,10 @@ const runStep = async <T>(description: string, step: Step<T>, ...args: any[]): P
   try {
     await step(...args)
     spinner.succeed()
+    return Promise.resolve()
   } catch (e) {
     spinner.fail()
-    throw e
+    return Promise.reject(e)
   }
 }
 

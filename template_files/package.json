@@ -2,7 +2,7 @@
   "name": "{{name}}",
   "version": "0.0.0",
   "scripts": {
-    "test": "esliint ./src && jest",
+    "test": "eslint ./src && jest",
     "start": "webpack-dev-server"
   },
   "dependencies": {
