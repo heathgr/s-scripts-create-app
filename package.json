@@ -19,6 +19,7 @@
   ],
   "keywords": [],
   "devDependencies": {
+    "@types/figlet": "^1.2.0",
     "@types/fs-extra": "^9.0.1",
     "@types/handlebars": "^4.1.0",
     "@types/jest": "^26.0.3",
