@@ -23,7 +23,7 @@ const displayHeader = async (): Promise<void> => {
   const headerText = await generateFancyText('S is for Store')
 
   console.log(headerText)
-  console.log(`S is for Store Create App ${packageJson.version}`)
+  console.log(`  S is for Store Create App ${packageJson.version}`)
   console.log('')
 }
 
