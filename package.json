@@ -1,6 +1,6 @@
 {
   "name": "@s-is-for-store/create-app",
-  "version": "0.0.1-alpah.3",
+  "version": "0.0.1-alpah.4",
   "description": "Creates an app that uses S is for Store",
   "main": "lib/index.js",
   "bin": "lib/index.js",
