@@ -1,14 +1,10 @@
 {
   "name": "{{name}}",
   "version": "0.0.0",
-  "description": "{{description}}",
-  "main": "src/index.ts",
   "scripts": {
-    "test": "jest",
+    "test": "eslint ./src && jest",
     "start": "webpack-dev-server"
   },
-  "author": "{{author}}",
-  "license": "{{license}}",
   "dependencies": {
     "@s-is-for-store/react": "^3.1.0",
     "@types/enzyme-adapter-react-16": "^1.0.6",
