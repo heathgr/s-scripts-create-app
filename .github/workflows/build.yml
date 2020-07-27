@@ -23,7 +23,7 @@ jobs:
       run: npm test
     - name: GetPublishedVersion
       id: publishedversion
-      run: echo "::set-output name=version::$(npm view @s-is-for-store/create-app version)"
+      run: echo "::set-output name=version::$(npm view @s-scripts/create-app version)"
     - name: GetRepoVersion
       id: repoversion
       run: echo "::set-output name=version::$(grep version package.json | cut -c 15- | rev | cut -c 3- | rev)"
