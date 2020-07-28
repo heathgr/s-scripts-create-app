@@ -1,6 +1,6 @@
 {
   "name": "@s-scripts/create-app",
-  "version": "0.0.1-alpah.5",
+  "version": "0.0.1-alpah.6",
   "description": "Creates an app that uses S is for Store",
   "main": "lib/index.js",
   "bin": "lib/index.js",
