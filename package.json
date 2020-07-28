@@ -21,7 +21,6 @@
   ],
   "keywords": [],
   "devDependencies": {
-    "@s-scripts/create-feature": "0.0.1-alpah.1",
     "@types/figlet": "^1.2.0",
     "@types/fs-extra": "^9.0.1",
     "@types/handlebars": "^4.1.0",
