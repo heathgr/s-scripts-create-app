@@ -13,7 +13,7 @@
     "s-is-for-store": "^3.1.1"
   },
   "devDependencies": {
-    "@s-scripts/create-feature": "0.0.1-alpah.1",
+    "@s-scripts/create-feature": "0.0.1-alpah.2",
     "@types/enzyme": "^3.10.5",
     "@types/jest": "^26.0.0",
     "@types/react": "^16.9.36",
