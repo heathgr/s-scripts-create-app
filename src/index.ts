@@ -18,7 +18,7 @@ const run = async (): Promise<void> => {
     await runStep('Creating Project Files', createProjectFiles, projectFolder, configuration)
     await runStep('Installing Dependencies', async () => exec(`( cd ${projectFolder}; npm install)`))
     await runStep('Validating Project', async () => exec(`( cd ${projectFolder}; npm test)`))
-    await runStep('Initializing Git', async () => exec(`( cd ${projectFolder}; git init)`))
+    await runStep('Initializing Git', async () => exec(`( cd ${projectFolder}; mv gitignore .gitignore; git init)`))
 
     console.log('')
     console.log(`Your app has been successfully created in ${projectFolder}`)
