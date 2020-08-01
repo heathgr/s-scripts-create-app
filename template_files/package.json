@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "test": "eslint ./src && jest",
+    "test:watch": "jest --watch",
     "start": "webpack-dev-server"
   },
   "dependencies": {
